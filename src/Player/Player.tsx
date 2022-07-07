@@ -1,8 +1,15 @@
 import React from 'react';
-import * as S from './Player.styled';
+import ReactPlayer from 'react-player';
+import * as S from './Player.style';
 
 const Player: React.FC = () => {
-  return <S.Wrap>Player</S.Wrap>;
+  return (
+    <S.PlayerWrapper>
+      <S.PlayerContainer>
+        <ReactPlayer url="https://www.youtube.com/watch?v=ysz5S6PUM-U" />
+      </S.PlayerContainer>
+    </S.PlayerWrapper>
+  );
 };
 
 export default Player;
