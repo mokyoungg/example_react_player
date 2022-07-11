@@ -3,6 +3,6 @@ import styled from 'styled-components';
 export const IconButton = styled.button`
   width: 40px;
   height: 48px;
-  border-radius: 4px;
-  overflow: hidden;
+  border: none;
+  background-color: transparent;
 `;

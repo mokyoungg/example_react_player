@@ -11,6 +11,7 @@ const usePlayer = () => {
 
   const containerRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<ReactPlayer>(null);
+  const controlsRef = useRef<HTMLDivElement>(null);
 
   const handlePlay = useCallback(() => {
     setIsPlaying(!isPlaying);
@@ -45,7 +46,7 @@ const usePlayer = () => {
     setIsSeeking(true);
   }, []);
 
-  const handleSeekMouseUp = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSeekMouseUp = useCallback((e: React.MouseEvent<HTMLInputElement>) => {
     setIsSeeking(false);
     playerRef.current?.seekTo(parseFloat(e.currentTarget.value));
   }, []);
@@ -53,6 +54,7 @@ const usePlayer = () => {
   return {
     containerRef,
     playerRef,
+    controlsRef,
     isPlaying,
     playedTime,
     totalTime,

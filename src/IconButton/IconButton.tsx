@@ -1,13 +1,13 @@
 import React, { MouseEventHandler } from 'react';
 import svgIcon from '../assets/index';
-import * as S from './Button.style';
+import * as S from './IconButton.style';
 
 interface Props {
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   icon: keyof typeof svgIcon;
 }
 
-const Button: React.FC<Props> = ({ onClick, icon }) => {
+const IconButton: React.FC<Props> = ({ onClick, icon }) => {
   const SvgIcon = svgIcon[icon];
 
   return (
@@ -17,4 +17,4 @@ const Button: React.FC<Props> = ({ onClick, icon }) => {
   );
 };
 
-export default Button;
+export default IconButton;
