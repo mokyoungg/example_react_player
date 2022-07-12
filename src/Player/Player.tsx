@@ -13,6 +13,7 @@ const Player: React.FC = () => {
     playedTime,
     totalTime,
     volume,
+    isControlVisible,
     handlePlay,
     handleDuration,
     handleProgress,
@@ -21,13 +22,15 @@ const Player: React.FC = () => {
     handleSeekChange,
     handleSeekMouseDown,
     handleSeekMouseUp,
+    showControl,
+    hideControl,
   } = usePlayer();
 
   return (
     <S.Wrapper>
       <div className="video-container">
         <S.PlayerWrapper>
-          <S.PlayerContainer ref={containerRef}>
+          <S.PlayerContainer ref={containerRef} onMouseMove={showControl} onMouseLeave={hideControl}>
             <ReactPlayer
               ref={playerRef}
               width="100%"
@@ -40,43 +43,43 @@ const Player: React.FC = () => {
               onDuration={handleDuration}
               onEnded={handleEndPlayer}
             />
+
+            <S.ControlsWrapper ref={controlsRef} isControlVisible={isControlVisible}>
+              <S.ControlsContainer>
+                <S.TimeAndScreenControls>
+                  <S.PlayTime>
+                    <span className="current-time">{formatTime(totalTime * playedTime)}</span> /{' '}
+                    <span className="total-time">{formatTime(totalTime)}</span>
+                  </S.PlayTime>
+
+                  <S.VolumeAndScreenControlContainer>
+                    <S.VolumeControlContainer>
+                      <S.SpeakerIcon onClick={() => {}} icon="speaker" />
+                      <S.VolumeControl type="range" min={0} max={1} step="any" onChange={handleVolume} value={volume} />
+                    </S.VolumeControlContainer>
+
+                    <S.FullScreenButton icon="FullScreen" />
+                  </S.VolumeAndScreenControlContainer>
+                </S.TimeAndScreenControls>
+
+                <S.ProgressBar
+                  type="range"
+                  min={0}
+                  max={0.9999}
+                  value={playedTime}
+                  step="any"
+                  onChange={handleSeekChange}
+                  onMouseUp={handleSeekMouseUp}
+                  onMouseDown={handleSeekMouseDown}
+                />
+              </S.ControlsContainer>
+
+              <S.PlayBtnWrap>
+                <S.PlayButton icon={isPlaying ? 'videoPause' : 'videoPlay'} onClick={handlePlay} />
+              </S.PlayBtnWrap>
+            </S.ControlsWrapper>
           </S.PlayerContainer>
         </S.PlayerWrapper>
-
-        <S.ControlsWrapper ref={controlsRef} isControllerVisible>
-          <S.ControlsContainer>
-            <S.TimeAndScreenControls>
-              <S.PlayTime>
-                <span className="current-time">{formatTime(totalTime * playedTime)}</span> /{' '}
-                <span className="total-time">{formatTime(totalTime)}</span>
-              </S.PlayTime>
-
-              <S.VolumeAndScreenControlContainer>
-                <S.VolumeControlContainer>
-                  <S.SpeakerIcon onClick={() => {}} icon="speaker" />
-                  <S.VolumeControl type="range" min={0} max={1} step="any" onChange={handleVolume} value={volume} />
-                </S.VolumeControlContainer>
-
-                <S.FullScreenButton icon="FullScreen" />
-              </S.VolumeAndScreenControlContainer>
-            </S.TimeAndScreenControls>
-
-            <S.ProgressBar
-              type="range"
-              min={0}
-              max={0.9999}
-              value={playedTime}
-              step="any"
-              onChange={handleSeekChange}
-              onMouseUp={handleSeekMouseUp}
-              onMouseDown={handleSeekMouseDown}
-            />
-          </S.ControlsContainer>
-
-          <S.PlayBtnWrap>
-            <S.PlayButton icon={isPlaying ? 'videoPause' : 'videoPlay'} onClick={handlePlay} />
-          </S.PlayBtnWrap>
-        </S.ControlsWrapper>
       </div>
     </S.Wrapper>
   );

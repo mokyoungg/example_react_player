@@ -7,7 +7,9 @@ const usePlayer = () => {
   const [isSeeking, setIsSeeking] = useState(false);
   const [playedTime, setPlayedTime] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
-  const [volume, setVolume] = useState(0);
+  const [volume, setVolume] = useState(0.5);
+  const [controlVisibleCount, setControlVisibleCount] = useState(0);
+  const [isControlVisible, setIsControlVisible] = useState(true);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<ReactPlayer>(null);
@@ -30,12 +32,22 @@ const usePlayer = () => {
   }, []);
 
   const handleProgress: BaseReactPlayerProps['onProgress'] = useCallback(
-    (state: { played: React.SetStateAction<number> }) => {
+    (state) => {
+      if (controlVisibleCount > 2) {
+        setControlVisibleCount(0);
+        setIsControlVisible(false);
+      }
+
+      if (isControlVisible && controlVisibleCount <= 2) {
+        const newcontrolVisibleCount = controlVisibleCount + 1;
+        setControlVisibleCount(newcontrolVisibleCount);
+      }
+
       if (!isSeeking) {
         setPlayedTime(state.played);
       }
     },
-    [isSeeking],
+    [controlVisibleCount, isSeeking],
   );
 
   const handleSeekChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,6 +63,16 @@ const usePlayer = () => {
     playerRef.current?.seekTo(parseFloat(e.currentTarget.value));
   }, []);
 
+  const showControl = useCallback(() => {
+    setControlVisibleCount(0);
+    setIsControlVisible(true);
+  }, []);
+
+  const hideControl = useCallback(() => {
+    setControlVisibleCount(3);
+    setIsControlVisible(false);
+  }, []);
+
   return {
     containerRef,
     playerRef,
@@ -59,6 +81,7 @@ const usePlayer = () => {
     playedTime,
     totalTime,
     volume,
+    isControlVisible,
     handlePlay,
     handleDuration,
     handleProgress,
@@ -67,6 +90,8 @@ const usePlayer = () => {
     handleSeekChange,
     handleSeekMouseDown,
     handleSeekMouseUp,
+    showControl,
+    hideControl,
   };
 };
 

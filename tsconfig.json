@@ -15,6 +15,7 @@
     "baseUrl": "./src",
     "useDefineForClassFields": true,
     "strictPropertyInitialization": false,
+    "noImplicitAny": false
   },
   "include": ["index.d.ts", "**/*.ts", "**/*.tsx", "**/*.js"],
   "exclude": ["node_modules"]

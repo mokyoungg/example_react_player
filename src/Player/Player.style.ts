@@ -3,7 +3,6 @@ import IconButton from 'IconButton/IconButton';
 
 const purple = '#785CFF';
 const gray = '#505057';
-const black = '#101010';
 
 export const Wrapper = styled.div`
   max-width: 580px;
@@ -33,7 +32,7 @@ export const PlayerContainer = styled.div`
   background-color: transparent;
 `;
 
-export const ControlsWrapper = styled.div<{ isControllerVisible: boolean }>`
+export const ControlsWrapper = styled.div<{ isControlVisible: boolean }>`
   width: 100%;
   height: 100%;
   position: absolute;
@@ -42,7 +41,7 @@ export const ControlsWrapper = styled.div<{ isControllerVisible: boolean }>`
   left: 0;
   right: 0;
   z-index: 10;
-  visibility: ${({ isControllerVisible }) => (isControllerVisible ? 'visible' : 'hidden')};
+  visibility: ${({ isControlVisible }) => (isControlVisible ? 'visible' : 'hidden')};
 `;
 
 export const ControlsContainer = styled.div`
