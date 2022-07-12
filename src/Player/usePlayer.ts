@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
 import { BaseReactPlayerProps } from 'react-player/base';
+import screenfull from 'screenfull';
 
 const usePlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -73,6 +74,16 @@ const usePlayer = () => {
     setIsControlVisible(false);
   }, []);
 
+  const handleFullScreen = useCallback(async () => {
+    if (screenfull.isEnabled && containerRef.current) {
+      try {
+        await screenfull.toggle(containerRef.current);
+      } catch (error) {
+        console.log('error :', error);
+      }
+    }
+  }, [containerRef.current]);
+
   return {
     containerRef,
     playerRef,
@@ -92,6 +103,7 @@ const usePlayer = () => {
     handleSeekMouseUp,
     showControl,
     hideControl,
+    handleFullScreen,
   };
 };
 

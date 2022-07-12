@@ -24,6 +24,7 @@ const Player: React.FC = () => {
     handleSeekMouseUp,
     showControl,
     hideControl,
+    handleFullScreen,
   } = usePlayer();
 
   return (
@@ -54,11 +55,11 @@ const Player: React.FC = () => {
 
                   <S.VolumeAndScreenControlContainer>
                     <S.VolumeControlContainer>
-                      <S.SpeakerIcon onClick={() => {}} icon="speaker" />
+                      <S.SpeakerIcon icon="speaker" />
                       <S.VolumeControl type="range" min={0} max={1} step="any" onChange={handleVolume} value={volume} />
                     </S.VolumeControlContainer>
 
-                    <S.FullScreenButton icon="FullScreen" />
+                    <S.FullScreenButton icon="FullScreen" onClick={handleFullScreen} />
                   </S.VolumeAndScreenControlContainer>
                 </S.TimeAndScreenControls>
 
