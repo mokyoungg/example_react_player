@@ -2,6 +2,7 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 
 const useDropZone = () => {
   const [isDragging, setIsDragging] = useState(false);
+  const [url, setUrl] = useState('');
 
   const dropZoneRef = useRef<HTMLDivElement>(null);
   const dragCount = useRef<number>(0);
@@ -16,6 +17,16 @@ const useDropZone = () => {
     if (dragCount.current > 2) {
       dragCount.current -= 1;
     }
+  }, []);
+
+  const handleDropFile = useCallback((e: DragEvent) => {
+    if (!e.dataTransfer) return;
+
+    const targetFile = e.dataTransfer.files[0];
+    console.log('targetFile :', targetFile);
+
+    const source = URL.createObjectURL(targetFile);
+    setUrl(source);
   }, []);
 
   const handleDragOut = useCallback((e: DragEvent) => {
@@ -41,7 +52,7 @@ const useDropZone = () => {
 
     setIsDragging(false);
 
-    console.log('drop');
+    handleDropFile(e);
     dragCount.current = 0;
   }, []);
 
@@ -72,6 +83,7 @@ const useDropZone = () => {
   return {
     dropZoneRef,
     isDragging,
+    url,
   };
 };
 
