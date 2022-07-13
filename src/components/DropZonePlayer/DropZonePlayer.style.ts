@@ -7,14 +7,16 @@ export const Wrap = styled.div`
 `;
 
 export const PlayerContainer = styled.div`
-  /* position: relative;
-  padding-top: 56.25%; */
+  position: relative;
+  padding-top: 56.25%;
 `;
 
-export const DropZoneContainer = styled.div<{ isDragging: boolean }>`
+export const DropZoneContainer = styled.div`
   width: 100%;
   inset: 0;
   position: absolute;
   top: 0;
-  z-index: ${({ isDragging }) => (isDragging ? 10 : 0)};
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

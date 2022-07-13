@@ -7,6 +7,9 @@ const gray = '#505057';
 export const PlayerWrapper = styled.div`
   width: 100%;
   height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 
   video {
     object-fit: fill;
@@ -55,6 +58,7 @@ export const PlayTime = styled.div`
 export const ProgressBar = styled.input<{ value: number }>`
   width: 100%;
   height: 8px;
+  margin: 0;
   cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -95,6 +99,7 @@ export const VolumeControl = styled.input<{ value: number }>`
   display: none;
   width: 64px;
   height: 4px;
+  margin: 0;
   border-radius: 8px;
   cursor: pointer;
   -webkit-appearance: none;

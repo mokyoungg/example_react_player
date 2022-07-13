@@ -23,7 +23,6 @@ const useDropZone = () => {
     if (!e.dataTransfer) return;
 
     const targetFile = e.dataTransfer.files[0];
-    console.log('targetFile :', targetFile);
 
     const source = URL.createObjectURL(targetFile);
     setUrl(source);

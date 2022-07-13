@@ -39,7 +39,6 @@ const Player: React.FC<Props> = ({ url }) => {
           ref={playerRef}
           width="100%"
           height="100%"
-          // url="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
           url={url.length ? url : 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'}
           playsinline
           playing={isPlaying}

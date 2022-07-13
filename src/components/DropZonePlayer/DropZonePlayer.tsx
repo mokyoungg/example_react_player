@@ -14,7 +14,7 @@ const DropZonePlayer: React.FC = () => {
       </S.PlayerContainer>
 
       {isDragging && (
-        <S.DropZoneContainer isDragging={isDragging}>
+        <S.DropZoneContainer>
           <DropZone isDragging={isDragging} />
         </S.DropZoneContainer>
       )}
