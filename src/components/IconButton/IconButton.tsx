@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from 'react';
-import svgIcon from '../assets/index';
+import svgIcon from 'assets';
 import * as S from './IconButton.style';
 
 interface Props {
