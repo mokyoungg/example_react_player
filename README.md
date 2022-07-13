@@ -12,3 +12,10 @@
 - Drag Event 를 활용하여 Dropzone 컴포넌트를 생성하였습니다.
 - 파일을 드래그하면 컴포넌트가 보이고 드랍을 하면 컴포넌트가 미디어 컴포넌트의 source url 로 저장됩니다.
 - server로 파일을 업로드하는 방식이 아니고 createObjectURL 을 사용하여 드랍된 파일의 url 을 사용합니다.
+
+
+## Demo Video
+
+
+https://user-images.githubusercontent.com/62838570/178658575-c4f0c7ed-9658-438c-bfd8-228e2c4d2730.mov
+
